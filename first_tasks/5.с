@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <malloc.h>
+
+int main()
+{
+    //№5
+    int *a, m, n, n1, i;
+    printf("Enter m and n: ");
+    scanf("%d%d", &m, &n);
+    a = (int*) malloc((m+n)*sizeof(int));
+
+    printf("Enter array elements: ");
+    for(i=0; i<m+n; ++i)
+        scanf("%d", &a[i]);
+
+    n1=n<m?n:m;
+    while(n1)
+    {
+        int cur = a[m+n-1];
+        for(i=m+n-1; i>0; --i)
+        {
+            a[i-1]+=cur;
+            cur=a[i-1]-cur;
+            a[i-1]-=cur;
+        }
+        a[m+n-1] = cur;
+        --n1;
+    }
+
+    for(i=0; i<m+n; ++i)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}

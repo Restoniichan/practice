@@ -15,7 +15,7 @@ int mod(int a, int b)
 
 int main()
 {
-    //น4
+    //ยน4
     int a, b = 1, c = 0;
     printf("Enter a and b: ");
     scanf("%d%d", &a, &b);

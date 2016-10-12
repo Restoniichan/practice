@@ -2,7 +2,7 @@
 
 int main()
 {
-    //น3
+    //ยน3
     int a, b;
     scanf("%d%d", &a, &b);
     printf("a: %d b: %d\n", a, b);

@@ -1,34 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void swap(int *x, int *y)
+{
+    int cur=*x;
+    *x=*y;
+    *y=cur;
+}
+
 void bubble_sort(int *a, int n)
 {
     int i, j;
     for(i=n; i>0; --i)
         for(j=n-1; j>n-i; --j)
             if(a[j-1]>a[j])
-            {
-                int cur=a[j-1];
-                a[j-1]=a[j];
-                a[j]=cur;
-            }
+                swap(a+j, a+j-1);
 }
 
 void insert_sort(int *a, int n)
 {
-    int i, j, cur;
+    int i, j;
     for(i=1; i<n; ++i)
         for(j=i; j>0 && a[j]<a[j-1]; --j)
-        {
-            cur=a[j];
-            a[j]=a[j-1];
-            a[j-1]=cur;
-        }
+            swap(a+j, a+j-1);
 }
 
 void quick_sort(int *a, int n)
 {
-    int left, right, p, cur;
+    int left, right, p;
     if(n<2)
         return;
     p=a[n/2];
@@ -40,9 +39,7 @@ void quick_sort(int *a, int n)
             --right;
         if(left>=right)
             break;
-        cur=a[left];
-        a[left]=a[right];
-        a[right]=cur;
+        swap(a+left, a+right);
     }
     quick_sort(a, left);
     quick_sort(a+left, n-left);

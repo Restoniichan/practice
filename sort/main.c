@@ -29,11 +29,11 @@ void bubble_sort(char **a, int n)
     int i, j;
     for(i=n; i>0; --i)
         for(j=n-1; j>n-i; --j)
-            if(a[j-1]>a[j])
-                swap(&a[j], &a[j-1]);
+            if(comparator(a[j-1], a[j]))
+                swap(&a[j-1], &a[j]);
 }
 
-void insert_sort(int *a, int n)
+/*void insert_sort(int *a, int n)
 {
     int i, j;
     for(i=1; i<n; ++i)
@@ -62,14 +62,14 @@ void quick_sort(int *a, int n)
 
     quick_sort(a, left);
     quick_sort(a+left, n-left);
-}
+}*/
 
 int main()
 {
-    int n, i, j, s_method, cur, *str_len;
-    char **a;
-    FILE *inp = fopen("input.txt", "r");
-    fscanf(inp, "%d\n", &n);
+    int n, i, j, k, s_method, *str_len;
+    char **a, cur;
+    FILE *inp=fopen("input.txt", "r");
+    fscanf(inp, "%d", &n);
 
     str_len=(int*)malloc(sizeof(int)*n);
 	for (i=0; i<n; ++i)
@@ -83,7 +83,7 @@ int main()
 		else
 			++i;
 	} while(cur!=EOF);
-
+    --i;
 	a=(char**)malloc(sizeof(char*)*i);
 	rewind(inp);
 	fscanf(inp, "%d\n", &n);
@@ -91,9 +91,8 @@ int main()
 	for(j=0; j<i; ++j)
 	{
 		a[j]=(char*)malloc(++str_len[j]);
-		int k=0;
-		cur=fgetc(inp);
-		while((cur!='\n')&&(cur!=EOF))
+		k=0;
+		while(((cur=fgetc(inp))!='\n')&&(cur!=EOF))
 			a[j][k++] = cur;
 		a[j][k] = '\0';
 	}
@@ -105,9 +104,9 @@ int main()
     {
     case 1:
         printf("Bubble choosed.\n");
-        bubble_sort(a, n);
+        bubble_sort(a, i);
         break;
-    case 2:
+    /*case 2:
         printf("Insert choosed.\n");
         insert_sort(a, n);
         break;
@@ -117,9 +116,15 @@ int main()
         break;
     default:
         printf("Incorrect input. Default choosed (Quick).\n");
-        quick_sort(a, n);
+        quick_sort(a, n);*/
     }
-
+    FILE *outp=fopen("output.txt", "w");
+	for (j=0; j<i; ++j)
+	{
+        fputs(a[j], outp);
+        fputc('\n',outp);
+	}
+	fclose(outp);
 
     free(a);
     return 0;

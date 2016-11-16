@@ -3,20 +3,21 @@
 
 int main()
 {
-    //№5
+    //5. Swapping parts of array.
     int *a, m, n, n1, i;
-    printf("Enter m and n: ");
-    scanf("%d%d", &m, &n);
-    a = (int*) malloc((m+n)*sizeof(int));
+    printf("Please, enter M and N: ");
+    scanf("%d %d", &m, &n);
+    a=(int*)malloc((m+n)*sizeof(int));
 
-    printf("Enter array elements: ");
+    printf("Now, enter array elements: ");
     for(i=0; i<m+n; ++i)
         scanf("%d", &a[i]);
-
+        
+    //n1 defines how long we'll be passing our array
     n1=n<m?n:m;
     while(n1)
     {
-        int cur = a[m+n-1];
+        int cur=a[m+n-1];
         for(i=m+n-1; i>0; --i)
         {
             a[i-1]+=cur;
@@ -27,6 +28,7 @@ int main()
         --n1;
     }
 
+    printf("There's your swapped array: \n");
     for(i=0; i<m+n; ++i)
     {
         printf("%d ", a[i]);

@@ -2,14 +2,17 @@
 
 int main()
 {
-    //¹3
+    //3. Swapping value of two variables w/o using third one.
     int a, b;
-    scanf("%d%d", &a, &b);
-    printf("a: %d b: %d\n", a, b);
+    printf("Please, enter A and B numbers: ");
+    scanf("%d %d", &a, &b);
+    printf("Here's your numbers:\n"
+           "A: %d B: %d\n", a, b);
     a+=b;
     b=a-b;
     a-=b;
-    printf("a: %d b: %d", a, b);
+    printf("And now I swapped them:\n"
+           "A: %d B: %d", a, b);
 
     return 0;
 }

@@ -1,9 +1,11 @@
 #include <stdio.h>
 
-int mod(int a, int b)
+int quot(int a, int b)
 {
-    a=a<0?(-1)*a:a;
-    b=b<0?(-1)*b:b;
+    if(a<0)
+        a*=-1;
+    if(b<0)
+        b*=-1;
     int c=0;
     while(a>0)
     {
@@ -15,29 +17,30 @@ int mod(int a, int b)
 
 int main()
 {
-    //¹4
-    int a, b = 1, c = 0;
-    printf("Enter a and b: ");
+    //4. Euclidean division
+    int a, b, c = 0;
+    printf("Please, enter integer A and B: ");
     scanf("%d%d", &a, &b);
     while(b==0)
     {
-        printf("Incorrect Input! Please, re-enter: ");
+        printf("Incorrect Input! B = 0. Please, re-enter: ");
         scanf("%d%d", &a, &b);
     }
 
     if(a==0)
     {
-        printf("a mod b = 0");
+        printf("Quotient of A divided by B is 0");
         return 0;
     }
 
-    if(a<0 && b>0 || a>0 && b<0)
+    if(a<0 && b>0
+       || a>0 && b<0)
     {
-        printf("a mod b = %d", (-1)*mod(a,b));
+        printf("Quotient of A divided by B is %d", (-1)*quot(a,b));
 
     }
     else
-        printf("a mod b = %d", mod(a,b));
+        printf("Quotient of A divided by B is %d", quot(a,b));
 
     return 0;
 }
